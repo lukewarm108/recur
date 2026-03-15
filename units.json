@@ -1,1 +1,1 @@
-{"study": {"instances": ["firefox", "konsole"]}, "test2": {"instances": ["firefox", "dolphin"]}}
+{"study": {"instances": ["firefox", "konsole", "firefox ", "dolphin"]}, "test2": {"instances": ["firefox", "dolphin"]}}

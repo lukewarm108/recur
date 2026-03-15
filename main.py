@@ -1,5 +1,6 @@
 from Recur import storage
 
+brk = ["back", "break", "b"]
 
 print('''
     === RECUR IS RUNNING ===
@@ -58,11 +59,11 @@ def create_unit():
         unit = input("Unit to create: ")
         if unit in units:
             print(f"Unit {unit} already exists.")
-            continue
+        elif unit in brk:
+            break
         else:
             storage.create_unit(unit)
             print(f"Unit {unit} is created.")
-            break
 
 
 def add_instance():
@@ -70,9 +71,14 @@ def add_instance():
     while True:
         unit = input("Unit name: ")
         if unit in units: 
-            instance = input("Instance to add: ")
-            storage.add_instance(unit, instance)
-            print(f"Instance {instance} added to unit {unit}")
+            while True:
+                instance = input("Instance to add: ")
+                if instance in brk:
+                    break
+                else:
+                    storage.add_instance(unit, instance)
+                    print(f"Instance {instance} added to unit {unit}")
+        elif unit in brk:
             break
         else:
             print(f"Unit {unit} does not exist.")
@@ -86,6 +92,7 @@ def delete_unit():
         if unit in units:
             storage.delete_unit(unit)
             print(f"Unit {unit} is deleted.")
+        elif unit in brk:
             break
         else: 
             print(f"Unit {unit} does not exist.")
@@ -103,17 +110,19 @@ def remove_instance():
                 if instance in instances:
                     storage.remove_instance(unit, instance)
                     print(f"Instance {instance} removed from unit {unit}")
+                elif instance in brk:
                     break
                 else:
                     print(f"Instance {instance} does not exist.")
                     continue
+        elif unit in brk:
+            break
         else:
             print(f"Unit {unit} does not exist.")
             continue
 
 
 def list_units():
-    units = storage.load_units()
     storage.list_units()
 
 
@@ -123,6 +132,7 @@ def list_instances():
         unit = input("Unit name: ")
         if unit in units:
             storage.list_instances(unit)
+        elif unit in brk:
             break
         else:
             print(f"Unit {unit} does not exist.")
@@ -135,7 +145,11 @@ def launch_unit():
         unit = input("Unit to launch: ")
         if unit in units:
             storage.launch_unit(unit)
-            print(f"Unit {unit} launched.")
+            print(f"Launching unit: {unit}")
+            for instance in units[unit]["instances"]:
+                print(f"{instance} launched...")
+            break
+        elif unit in brk:
             break
         else:
             print(f"Unit {unit} does not exist.")

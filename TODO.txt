@@ -1,7 +1,6 @@
 -* beautify unit and instance lists and introduce tree view
-- add continuous instance and unit addition with back option
+-* add continuous instance and unit addition with back option
 -* add spontaneous units.json creation
 - add window management
-- add cross-identifier interactivity
 - handle errors and redundent terminal text (if any)
 - write unit tests
