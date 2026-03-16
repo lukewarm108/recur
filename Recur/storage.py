@@ -5,14 +5,17 @@ from rich.tree import Tree
 from rich.console import Console
 
 
+JSON_PATH = "units.json"
+
+
 # GENERAL
 def save_units(units):
-    with open("units.json", "w") as f:
+    with open(JSON_PATH, "w") as f:
         json.dump(units, f)
 
 def load_units():
-    if os.path.exists("units.json"):
-        with open("units.json", "r") as f:
+    if os.path.exists(JSON_PATH):
+        with open(JSON_PATH, "r") as f:
             return json.load(f)
     else:
         save_units({})

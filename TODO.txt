@@ -1,6 +1,11 @@
 -* beautify unit and instance lists and introduce tree view
 -* add continuous instance and unit addition with back option
 -* add spontaneous units.json creation
-- add window management
+- add proper interactivity with arrow-keys
 - handle errors and redundent terminal text (if any)
 - write unit tests
+- start the program with tree view show relevant lists after entering identifier
+- add argv/argparse
+- units.json to local file system
+- add .toml
+- add window management
