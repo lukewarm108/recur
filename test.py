@@ -3,14 +3,10 @@ import questionary
 
 brk = ["back", "break", "b"]
 main_menu = [
-    "Create Unit",
-    "Delete Unit",
-    "Add Instance",
-    "Remove Instance",
-    "List Units",
-    "List Instances",
-    "Launch Unit",
+    "Launch",
     "Tree View",
+    "Units",
+    "Instances",
     "Quit"
 ]
 
@@ -19,29 +15,29 @@ print("=== RECUR IS RUNNING ===")
 def main():
     while True:
         action = questionary.select('What to do?', choices=main_menu).ask()
-        if action == "Create Unit":
-            create_unit()
-        elif action == "Add Instance":
-            add_instance()
-        elif action == "Delete Unit":
-            delete_unit()
-        elif action == "Remove Instance":
-            remove_instance()
-        elif action == "List Units":
-            list_units()
-        elif action == "List Instances":
-            list_instances()
-        elif action == "Launch Unit":
-            launch_unit()
+        if action == "Launch":
+            units = storage.load_units()
+            units = list(units.keys()) + ["Back"]
+            unit = questionary.select('Unit to launch: ', choices=units).ask()
+            if unit == "Back":
+                continue
+            else:
+                storage.launch_unit(unit)
+
         elif action == "Tree View":
-            storage.tree_view()
+            ...
+
+        elif action == "Units":
+            ...
+
+        elif action == "Instances":
+            ...
+        
         elif action == "Quit":
-            print("Quitting Recur...")
             break
-        else:
-            print("Please enter a correct identifier.")
 
 
+# ===================================================================
 def create_unit():
     units = storage.load_units()
     while True:
@@ -53,7 +49,6 @@ def create_unit():
         else:
             storage.create_unit(unit)
             print(f"Unit {unit} is created.")
-
 
 def add_instance():
     units = storage.load_units()
@@ -73,7 +68,6 @@ def add_instance():
             print(f"Unit {unit} does not exist.")
             continue
 
-
 def delete_unit():
     units = storage.load_units()
     while True:
@@ -86,7 +80,6 @@ def delete_unit():
         else: 
             print(f"Unit {unit} does not exist.")
             continue
-
 
 def remove_instance():
     units = storage.load_units()
@@ -110,10 +103,8 @@ def remove_instance():
             print(f"Unit {unit} does not exist.")
             continue
 
-
 def list_units():
     storage.list_units()
-
 
 def list_instances():
     units = storage.load_units()
@@ -126,7 +117,6 @@ def list_instances():
         else:
             print(f"Unit {unit} does not exist.")
             continue
-
 
 def launch_unit():
     units = storage.load_units()
@@ -143,7 +133,7 @@ def launch_unit():
         else:
             print(f"Unit {unit} does not exist.")
             continue
-
+# ===================================================================
 
 if __name__ == "__main__":
     main()

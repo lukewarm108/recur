@@ -64,9 +64,11 @@ def list_instances(unit_name):
 # LAUNCH
 def launch_unit(unit_name):
     units = load_units()
-    units = units[unit_name]["instances"]
-    for unit in units:
-        subprocess.Popen(unit.split(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    print(f"Launching unit: {unit_name}")
+    instances = units[unit_name]["instances"]
+    for instance in instances:
+        subprocess.Popen(instance.split(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(f"{instance} launched...")
 
 
 # FEATURES
