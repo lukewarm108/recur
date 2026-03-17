@@ -1,16 +1,20 @@
 from Recur import storage
 import questionary
+#==============================================================================
 
+
+#==============================================================================
 brk = ["back", "break", "b"]
 main_menu = [
     "Launch",
     "Tree View",
     "Units",
-    "Instances",
     "Quit"
 ]
+#==============================================================================
 
 
+#==============================================================================
 print("=== RECUR IS RUNNING ===")
 def main():
     while True:
@@ -24,100 +28,89 @@ def main():
             else:
                 storage.launch_unit(unit)
 
+
         elif action == "Tree View":
-            ...
+            units = storage.load_units()
+            storage.tree_view()
+            questionary.select('', choices=['Back to Main Menu']).ask()
+
 
         elif action == "Units":
-            ...
+            while True:
+                units = storage.load_units()
+                action = questionary.select('Select your action', choices=['Create', 'Delete', 'Add Instance', 'Remove Instance', 'Back']).ask()
 
-        elif action == "Instances":
-            ...
+                if action == 'Create':
+                    while True:
+                        name = input("Name: ")
+                        if name in units:
+                            print(f"{name} already exists. Try a different name.")
+                            continue
+                        elif name in brk:
+                            break
+                        else:
+                            storage.create_unit(name)
+                            break
+
+                elif action == 'Delete':
+                    while True:
+                        units = storage.load_units()
+                        units = list(units.keys())
+                        unit = questionary.select('Unit to Delete', choices=units + ["Back"]).ask()
+
+                        if unit in units:
+                            if questionary.confirm('Are you sure?').ask():
+                                storage.delete_unit(unit)
+                                print(f"Unit {unit} deleted.")
+                            else:
+                                continue
+                        else:
+                            break
+
+                elif action == "Add Instance":
+                    while True:
+                        units = storage.load_units()
+                        units = list(units.keys())
+                        unit = questionary.select('Select Unit', choices=units + ["Back"]).ask()
+
+                        if unit in units:
+                            while True:
+                                instance = input("Instance to add: ")
+                                if instance in brk:
+                                    break
+                                else:
+                                    storage.add_instance(unit, instance)
+                                    print(f"Instance {instance} added to unit {unit}")
+                                    continue
+
+                        else:
+                            break
+                
+                elif action == "Remove Instance":
+                    while True:
+                        units = storage.load_units()
+                        units = list(units.keys())
+                        unit = questionary.select('Select Unit', choices=units + ["Back"]).ask()
+
+                        if unit in units:
+                            while True:
+                                instances = storage.load_instances(unit)
+                                instance = questionary.select('Instance to delete', choices=instances + ["Back"]).ask()
+                                if instance in instances:
+                                    storage.remove_instance(unit, instance)
+                                else:
+                                    break
+                        else:
+                            break
+                
+                else:
+                    break
         
+
         elif action == "Quit":
+            print("Quitting recur...")
             break
-
-
-# ===================================================================
-def create_unit():
-    units = storage.load_units()
-    while True:
-        unit = input("Unit to create: ")
-        if unit in units:
-            print(f"Unit {unit} already exists.")
-        elif unit in brk:
-            break
-        else:
-            storage.create_unit(unit)
-            print(f"Unit {unit} is created.")
-
-def add_instance():
-    units = storage.load_units()
-    while True:
-        unit = input("Unit name: ")
-        if unit in units: 
-            while True:
-                instance = input("Instance to add: ")
-                if instance in brk:
-                    break
-                else:
-                    storage.add_instance(unit, instance)
-                    print(f"Instance {instance} added to unit {unit}")
-        elif unit in brk:
-            break
-        else:
-            print(f"Unit {unit} does not exist.")
-            continue
-
-def delete_unit():
-    units = storage.load_units()
-    while True:
-        unit = input("Unit to delete: ")
-        if unit in units:
-            storage.delete_unit(unit)
-            print(f"Unit {unit} is deleted.")
-        elif unit in brk:
-            break
-        else: 
-            print(f"Unit {unit} does not exist.")
-            continue
-
-def remove_instance():
-    units = storage.load_units()
-    while True:
-        unit = input("Unit name: ")
-        if unit in units: 
-            instances = storage.load_instances(unit)
-            while True:
-                instance = input("Instance to remove: ")
-                if instance in instances:
-                    storage.remove_instance(unit, instance)
-                    print(f"Instance {instance} removed from unit {unit}")
-                elif instance in brk:
-                    break
-                else:
-                    print(f"Instance {instance} does not exist.")
-                    continue
-        elif unit in brk:
-            break
-        else:
-            print(f"Unit {unit} does not exist.")
-            continue
-
-def list_units():
-    storage.list_units()
-
-def list_instances():
-    units = storage.load_units()
-    while True:
-        unit = input("Unit name: ")
-        if unit in units:
-            storage.list_instances(unit)
-        elif unit in brk:
-            break
-        else:
-            print(f"Unit {unit} does not exist.")
-            continue
-# ===================================================================
+#==============================================================================
 
 if __name__ == "__main__":
     main()

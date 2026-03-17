@@ -21,3 +21,8 @@ Thumbs.db
 
 # env variables
 .env
+
+# =====
+TODO.txt
+units.json
+test.py
