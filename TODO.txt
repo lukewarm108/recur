@@ -1,9 +1,0 @@
--* beautify unit and instance lists and introduce tree view
--* add continuous instance and unit addition with back option
--* add spontaneous units.json creation
--* add proper interactivity with arrow-keys
--* units.json to local file system
-- write unit tests
-- add argv/argparse
-- add .toml
-- add window management
