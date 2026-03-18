@@ -1,3 +1,6 @@
+units.json
+TODO.txt
+
 # Python cache
 __pycache__/
 *.pyc
@@ -21,8 +24,3 @@ Thumbs.db
 
 # env variables
 .env
-
-# =====
-proto_main.py
-TODO.txt
-units.json
