@@ -4,11 +4,9 @@ import os
 from rich.tree import Tree
 from rich.console import Console
 
-# uncomment the #1 lines in order to save units.json to local file system.
 
-JSON_PATH = "units.json"
-#1 DATA_DIR = os.path.join(os.path.expanduser('~'), '.local', 'share', 'recur')
-#1 JSON_PATH = os.path.join(DATA_DIR, 'units.json')
+DATA_DIR = os.path.join(os.path.expanduser('~'), '.local', 'share', 'recur')
+JSON_PATH = os.path.join(DATA_DIR, 'units.json')
 
 
 # GENERAL
@@ -17,7 +15,7 @@ def save_units(units):
         json.dump(units, f)
 
 def load_units():
-    #1 os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
     if os.path.exists(JSON_PATH):
         with open(JSON_PATH, "r") as f:
             return json.load(f)
