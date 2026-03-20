@@ -52,7 +52,7 @@ Or, from inside the repo directory:
 git pull origin main # Pull the changes
 pipx reinstall recur
 ```
-## 4. Usage
+## 4. Usage and Troubleshooting
 The program can be launched with:
 ```bash
 recur
@@ -71,7 +71,7 @@ The following options will be shown. Arrow keys are used for navigation.
 **Units** - Control center for editing the `.json` file interactively. It allows for creating and deleting units, adding and removing instances.
 **Quit** - Self-descriptive.
 
-> [!NOTE] Note
+> [!NOTE]
 > While creating unit(s) or adding instance(s), the program may ask for contents continuously. Entering `b`, `back`, or `break` reverts to the previous menu.
 
 ## 5. Files
@@ -94,10 +94,10 @@ The units and their respective instances are stored in a `.json` file at:
 ## 6. Clean Uninstall
 In case of dissatisfaction or any reason whatsoever, if uninstallation of Recur is prompted, the following is the recommended procedure for a clean uninstall.
 
-> [!NOTE] NOTE
+> [!NOTE]
 > This will permanently delete all data and files and directories associated with Recur in and from your local machine.
 
-> [!NOTE] NOTE
+> [!NOTE]
 > This section assumes an installation and setup in accordance with the [recommended procedure](#3-installation-setup-and-update) as well as no changes in the files structure have been made.
 
 Start with `pipx`:
