@@ -1,6 +1,7 @@
 units.json
 TODO.txt
 recur.egg-info
+build
 
 # Python cache
 __pycache__/
