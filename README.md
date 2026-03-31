@@ -1,126 +1,233 @@
-# RECUR
-## Contents
-1. [Introduction](#1-introduction)
-2. [Statement of Objects and Reasons](#2-statement-of-objects-and-reasons)
-3. [Installation, Setup, and Update](#3-installation-setup-and-update)
-4. [Usage and Troubleshooting](#4-usage-and-troubleshooting)
-5. [Files](#5-files)
-6. [Clean Uninstall](#6-clean-uninstall)
-7. [Limitations and Recommendations](#7-limitations-and-recommendations)
-## 1. Introduction
-Recur is basically an easy-to-use and simple automation tool. You can organize multiple commands, termed 'instances', into specific 'units', and launch them all at once, everything through the TUI and not manual scripting.
+# 🔄 RECUR
 
-It is written in Python, based on Linux, stores data in a JSON file, and uses the `questionary` module for TUI.
-## 2. Statement of Objects and Reasons
-Scripting often looks, or perhaps is, intimidating for those not specifically into the technical fields such as software development, etc. Moreover, people often have to open multiple windows for getting on with their work.
+[![Python 100%](https://img.shields.io/badge/Python-100%25-3776ab?logo=python&logoColor=white)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform: Linux](https://img.shields.io/badge/Platform-Linux-FCC624?logo=linux&logoColor=black)](https://www.kernel.org/)
+[![Code style: Modern](https://img.shields.io/badge/Code%20Style-Modern-8A2BE2)]()
 
-For these reasons, inter alia, Recur provides an easy-to-use terminal interface for entering commands, grouping them into 'units', launching them whenever required, as well as storing them in a JSON file which can be transferred manually into a different machine for re-use. The tool is made specifically for opening multiple GUI apps together, but it can also be used for simple scripting.
-## 3. Installation, Setup, and Update
-Although many paths for installation exist, the following is the recommended one for convenience and ease of use.
+> A simple, Linux- and Python-based, multi-instance launcher script for automation and command management.
 
-Pre-requisites:
+## 📋 Table of Contents
+
+- [✨ Features](#-features)
+- [🎯 What is Recur?](#-what-is-recur)
+- [💡 Why Use Recur?](#-why-use-recur)
+- [📦 Installation](#-installation)
+- [🚀 Usage](#-usage)
+- [📁 Project Structure](#-project-structure)
+- [⚙️ Configuration](#-configuration)
+- [⚠️ Limitations & Recommendations](#-limitations--recommendations)
+- [🗑️ Uninstall](#-uninstall)
+
+## ✨ Features
+
+- 🎨 **Intuitive TUI Interface** - Navigate with arrow keys, no scripting required
+- 📦 **Command Organization** - Group commands into logical units and instances
+- 💾 **Persistent Storage** - Save configurations in JSON format for easy backup and transfer
+- 🔧 **Simple Management** - Create, edit, and delete units/instances interactively
+- 🐧 **Linux Native** - Built specifically for Linux environments
+- 🐍 **Pure Python** - Lightweight and portable
+
+## 🎯 What is Recur?
+
+Recur is an easy-to-use automation tool that simplifies launching multiple commands. You organize commands into **instances**, group them into **units**, and launch them all at once—all through an intuitive terminal interface.
+
+**Perfect for:**
+- Launching multiple GUI applications together
+- Automating repetitive command sequences
+- Managing complex workflows without manual scripting
+
+**Built with:**
+- Python 3.x
+- `questionary` for the interactive TUI
+- JSON for configuration storage
+
+## 💡 Why Use Recur?
+
+Scripting can be intimidating, and managing multiple commands across different windows is tedious. Recur removes these pain points by providing:
+
+- ✅ **No scripting knowledge required** - Use the interactive menu instead
+- ✅ **Centralized control** - Launch everything from one interface
+- ✅ **Portable configurations** - Transfer your units.json to any machine
+- ✅ **Perfect for beginners and power users alike**
+
+## 📦 Installation
+
+### Prerequisites
+
 ```
 python 3.x
 pipx
 git
 ```
 
-Before proceeding with the installation, it's recommended to update your system.
-```bash
-sudo pacman -Syu # For Arch, Manjaro
-sudo apt update && sudo apt upgrade # For Debian, Ubuntu, Mint
-sudo dnf upgrade # For Fedora
-```
+### Recommended Installation
 
-Clone the repository and move inside:
-```bash
-git clone https://github.com/lukewarm108/recur.git # Clone repo
-cd recur # Move inside
-```
+#### 1. Clone and install
 
-`pipx` by itself manages Python CLI tools and their dependencies in isolated environments, keeping them separate from your system Python. Finish the procedure by installing it using `pipx`:
 ```bash
+# Clone the repository
+git clone https://github.com/lukewarm108/recur.git
+cd recur
+
+# Install using pipx (recommended - isolated environment)
 pipx install .
 ```
 
-For updating, you can simply:
+#### 2. Verify installation
+
 ```bash
+recur --version  # Check installation
+recur            # Launch the application
+```
+
+### Updating
+
+```bash
+# Update from anywhere
+pipx upgrade recur
+
+# Or, from the repo directory
+git pull origin main
 pipx reinstall recur
 ```
-Or, from inside the repo directory:
-```bash
-git pull origin main # Pull the changes
-pipx reinstall recur
-```
-## 4. Usage and Troubleshooting
-The program can be launched with:
+
+## 🚀 Usage
+
+### Quick Start
+
 ```bash
 recur
 ```
 
-The following options will be shown. Arrow keys are used for navigation.
-```recur
-» Launch  
-  Tree View  
-  Units  
-  Quit
-```
-### Main Menu
-**Launch** - Shows the units and launches the one selected.
-**Tree View** - Presents an ASCII view of the units and instances, replicating the `.json` file.
-**Units** - Control center for editing the `.json` file interactively. It allows for creating and deleting units, adding and removing instances.
-**Quit** - Self-descriptive.
+You'll be presented with the main menu:
 
-> [!NOTE]
-> While creating unit(s) or adding instance(s), the program may ask for contents continuously. Entering `b`, `back`, or `break` reverts to the previous menu.
-
-## 5. Files
-### File Structure
-```file
-.
-├── LICENSE # MIT
-├── pyproject.toml
-├── README.md
-└── Recur
-    ├── __init__.py
-    ├── main.py
-    └── storage.py
 ```
-### JSON Storage
-The units and their respective instances are stored in a `.json` file at:
-```path
+» Launch
+  Tree View
+  Units
+  Quit
+```
+
+Use **arrow keys** to navigate and **Enter** to select.
+
+### Main Menu Options
+
+| Option | Purpose |
+|--------|---------|
+| **Launch** | View available units and execute one |
+| **Tree View** | ASCII visualization of all units and instances |
+| **Units** | Add, edit, or delete units and instances |
+| **Quit** | Exit the application |
+
+### Working with Units & Instances
+
+#### Creating a Unit
+1. Select **Units** → Create a new unit
+2. Enter a descriptive name (e.g., "Development Setup")
+3. Add instances to the unit
+
+#### Adding Instances
+1. Select a unit and choose to add an instance
+2. Enter the command to execute (e.g., `code .`, `firefox`)
+3. Enter multiple instances as needed
+
+> **Navigation Tip:** While creating units or adding instances, type `b`, `back`, or `break` to return to the previous menu.
+
+### Example Workflow
+
+**Setup a "Work Session" unit:**
+- Instance 1: `code ~/my-project` (open VS Code)
+- Instance 2: `spotify` (launch Spotify)
+- Instance 3: `thunderbird` (open email client)
+
+Then launch all three with a single command!
+
+## 📁 Project Structure
+
+```
+recur/
+├── LICENSE                 # MIT License
+├── pyproject.toml         # Project configuration
+├── README.md              # This file
+└── recur/
+    ├── __init__.py        # Package initialization
+    ├── main.py            # Main application logic
+    └── storage.py         # JSON storage management
+```
+
+## ⚙️ Configuration
+
+### Data Storage Location
+
+Your units and instances are stored in a JSON file at:
+
+```
 ~/.local/share/recur/units.json
 ```
-## 6. Clean Uninstall
-In case of dissatisfaction or any reason whatsoever, if uninstallation of Recur is prompted, the following is the recommended procedure for a clean uninstall.
 
-> [!NOTE]
-> This will permanently delete all data and files and directories associated with Recur in and from your local machine.
+**Example JSON structure:**
 
-> [!NOTE]
-> This section assumes an installation and setup in accordance with the [recommended procedure](#3-installation-setup-and-update) as well as no changes in the files structure have been made.
+```json
+{
+  "units": {
+    "Development": {
+      "instances": ["code .", "npm start"]
+    },
+    "Media": {
+      "instances": ["firefox", "vlc"]
+    }
+  }
+}
+```
 
-Start with `pipx`:
+### Manual Configuration
+
+You can edit `units.json` directly, but be careful:
+- Maintain valid JSON syntax
+- Keep the structure consistent with the format above
+- Invalid JSON will prevent the app from running
+
+## ⚠️ Limitations & Recommendations
+
+### Known Limitations
+
+| # | Limitation | Details |
+|---|-----------|---------|
+| 1 | **JSON Corruption** | Manual editing errors can break the app. Edit carefully! |
+| 2 | **No Passwords** | Instances requiring passwords/keys won't work yet |
+| 3 | **Instance Limit** | Recommended: 5-10 instances per unit (device dependent) |
+| 4 | **Linux Only** | Only Linux is natively supported. Windows requires manual configuration |
+| 5 | **No Delays** | All instances launch simultaneously (no configurable delay) |
+| 6 | **No Window Management** | Window positioning/sizing is uncontrolled |
+| 7 | **No CLI Arguments** | Control via command-line flags not yet available |
+
+### Recommendations
+
+- ✅ Keep your instances simple and reliable
+- ✅ Test instances individually before grouping them
+- ✅ Backup your `units.json` before major edits
+- ✅ Use graphical launchers that don't require interaction
+
+## 🗑️ Uninstall
+
+To completely remove Recur:
+
 ```bash
+# Remove the application
 pipx uninstall recur
-```
 
-Remove the `.json` file along with its parent directory:
-```bash
+# Remove configuration and data
 rm -rf ~/.local/share/recur
+
+# Remove the repository (optional)
+rm -rf ~/path/to/recur
 ```
 
-Remove the repo directory:
-```bash
-rm -rf recur
-```
-## 7. Limitations and Recommendations
-As a simple program, Recur has several limitation. These limitations may or may not be patched in the future, depending on whether they defeat the purpose of simplicity and ease of use. Some of these limitations, along with certain recommendations, are mentioned below.
+> ⚠️ **Warning:** This permanently deletes all your saved units and configurations.
 
-1. **`json` corruption:** Manually editing or tinkering with the `.json` file might prevent the program from running as intended.
-2. **Passwords:** Instances that require a password or any key will not work (yet).
-3. **Instance limit:** In a single unit, it's recommended to add only as many instances as the host device can realistically handle. Generally speaking, 5-10 instances are recommended.
-4. **Platforms:** Only Linux is natively supported. Windows and other platforms may be supported via individual editing.
-5. **No delay:** All instances in a unit launch simultaneously with no configurable delay in between.
-6. **No window management:** Instances that open windows have no control over positioning and size of the windows. They may be opened based on last position or size, individual device configuration, or any other basis.
-7. **No CLI arguments:** Control via CLI arguments is not available as of now. 
+---
+
+**Made with ❤️ for simplicity and ease of use**
+
+[View on GitHub](https://github.com/lukewarm108/recur) • [Report an Issue](https://github.com/lukewarm108/recur/issues)
